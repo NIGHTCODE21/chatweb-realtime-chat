@@ -1,54 +1,27 @@
-const express = require("express");
-const http = require("http");
-const cors = require("cors");
-const socketIO = require("socket.io");
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const app = express();
-const server = http.createServer(app);
+function Join() {
 
-app.use(cors());
+  const [name, setName] = useState("");
 
-const io = socketIO(server);
+  return (
+    <div>
 
-const users = {};
+      <h2>ChatWeb</h2>
 
-io.on("connection", (socket) => {
+      <input
+        type="text"
+        placeholder="Enter name"
+        onChange={(e) => setName(e.target.value)}
+      />
 
-  console.log("User connected");
+      <Link to={`/chat/${name}`}>
+        <button>Join</button>
+      </Link>
 
-  socket.on("joined", ({ user }) => {
-    users[socket.id] = user;
+    </div>
+  );
+}
 
-    socket.emit("welcome", {
-      user: "Admin",
-      message: `Welcome ${user}`
-    });
-
-    socket.broadcast.emit("userJoined", {
-      user: "Admin",
-      message: `${user} joined the chat`
-    });
-  });
-
-  socket.on("message", ({ message, id }) => {
-    io.emit("sendMessage", {
-      user: users[id],
-      message,
-      id
-    });
-  });
-
-  socket.on("disconnect", () => {
-    socket.broadcast.emit("leave", {
-      user: "Admin",
-      message: `${users[socket.id]} left`
-    });
-
-    delete users[socket.id];
-  });
-
-});
-
-server.listen(5000, () => {
-  console.log("Server running on port 5000");
-});
+export default Join;
