@@ -1,53 +1,29 @@
-# chatweb-realtime-chat
-# ChatWeb – Real-Time Chat Application
+#  ChatWeb – Real-Time Anonymous Chat App
 
-A real-time anonymous chat web application built using **React** and **Socket.io** that enables users to communicate instantly without creating accounts.
-
-## Features
-
-* Real-time messaging using WebSockets
-* Anonymous session-based chat
-* Instant message broadcasting
-* Dynamic user interface with React
-* Low-latency communication using Socket.io
+A scalable real-time chat application that enables anonymous communication between users using WebSockets.
 
 ##  Tech Stack
+- React.js + TypeScript
+- Node.js + Express
+- Socket.io (WebSockets)
 
-* **Frontend:** React.js, TypeScript
-* **Backend:** Node.js
-* **Communication:** Socket.io (WebSockets)
+##  Features
+-  Random user matching (Omegle-style)
+-  Real-time messaging (low latency)
+-  Anonymous chat (no authentication)
+-  “Next” user functionality
+-  Event-driven architecture
 
-##  Installation & Setup
+##  System Design Highlights
+- Queue-based user matching
+- Room-based communication
+- Scalable socket architecture
+- Separation of concerns (services, socket handlers)
 
-1. Clone the repository
+##  Run Locally
 
-```
-git clone https://github.com/NIGHTCODE21/chatweb-realtime-chat.git
-```
-
-2. Navigate to the project folder
-
-```
-cd chatweb-realtime-chat
-```
-
-3. Install dependencies
-
-```
+### Backend
+```bash
+cd server
 npm install
-```
-
-4. Start the development server
-
-```
-npm start
-```
-
-##  Project Purpose
-
-This project was developed to understand **real-time communication, WebSocket architecture, and event-driven systems** using Socket.io.
-
-##  Author
-
-**Priyanshi Pankhaniya**
-GitHub: https://github.com/NIGHTCODE21
+npx ts-node src/index.ts
